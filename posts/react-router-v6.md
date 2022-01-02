@@ -29,7 +29,73 @@ npm install react-router-dom@6
 
 This will install the version 6 of React Router Dom but if you exclude the *@6* it would grab the latest and greatest version but in this case we are focusing on version 6.
 
+The begining step of initializing the browser router has not changed, so that step remains the same.
 
+###### index.js
+```js
+...
+
+import { BrowserRouter } from 'react-router-dom'
+
+...
+
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+
+...
+```
  
+The next change of defining the routes does change however and we would replace the *switch* to the *routes*
+
+###### app.js
+```js
+...
+
+import { Routes, Route } from 'react-router-dom';
+
+const App = () => (
+  <>
+    // before <Switch>
+    <Routes>
+      <Route ... />
+      <Route ... />
+      <Route ... />
+    </Routes>
+  </>
+)
+
+export default App;
+```
+
+This would work exactly like before but now the terms are different and this term makes more sense since we are having routes and not switching between them per say. 
+
+The way that we defined our routes has also changed. The key word *route* is still there but the content has been switch to a new syntax. So to define a route, you would do the following: 
+
+###### app.js
+```js
+...
+
+import { Routes, Route } from 'react-router-dom';
+import Home from '../components/pgs/Home';
+import About from '../components/pgs/About';
+
+const App = () => (
+  <>
+    <Routes>
+      // previously <Route path='/' exact component={<Home />} />
+      <Route path='/' element={<Home />} />
+      <Route path='/about' element={<About />} />
+    </Routes>
+  </>
+)
+
+export default App;
+```
+
+Where as Home and About are other component for the different pages.
+
+
+
 In conclusion, change is inevitable, especially in the tech industry where more advances happens on the daily. The main thing for us to do be continual learners to adapt to the changes so we don't be left behind and still relevant in today's world.
 
