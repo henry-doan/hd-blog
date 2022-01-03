@@ -3,7 +3,6 @@ title: 'CSS Unit of Measurements'
 date: '2018-11-11'
 ---
 
-### CSS Unit of Measurements
 
 When styling you might want to change the size of some elements and this is achieved by two ways, one is **Relative** Measurements and the other is **Absolute** Measurements. 
 

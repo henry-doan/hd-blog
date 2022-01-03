@@ -3,7 +3,6 @@ title: 'CSS Colors'
 date: '2018-12-29'
 ---
 
-### CSS Colors
 
 In CSS, color is represented in a number of different ways and it is just up  to the developer to choose what is more useful to code.
 
