@@ -1,6 +1,7 @@
 ---
 title: 'The Box Model'
 date: '2018-11-11'
+readTime: '4'
 ---
 
 All HTML tags generate content to a web page and all of the content on the page is wrapped within a box. This is called the **Box Model** and inside of this box, we are able to add positioning, styles, spacing and borders on HTML elements.

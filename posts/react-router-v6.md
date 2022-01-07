@@ -1,6 +1,7 @@
 ---
 title: 'Transitioning from React Router V4 or V5 to the new V6'
 date: '2022-01-01'
+readTime: '15'
 ---
 
 You probably heard of the term 

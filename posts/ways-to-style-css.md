@@ -1,6 +1,7 @@
 ---
 title: 'Ways to style, with CSS'
 date: '2017-11-28'
+readTime: '4'
 ---
 
 ## CSS

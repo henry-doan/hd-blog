@@ -1,6 +1,7 @@
 ---
 title: 'Fonts and Typography'
 date: '2018-12-29'
+readTime: '2'
 ---
 
 

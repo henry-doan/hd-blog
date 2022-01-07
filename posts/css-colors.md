@@ -1,6 +1,7 @@
 ---
 title: 'CSS Colors'
 date: '2018-12-29'
+readTime: '3'
 ---
 
 
