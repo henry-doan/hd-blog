@@ -1,5 +1,5 @@
 ---
-title: 'Intro Command Line'
+title: 'Intro to the Command Line'
 date: '2020-05-23'
 readTime: '5'
 ---
