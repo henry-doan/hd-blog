@@ -1,7 +1,7 @@
 ---
 title: 'Conditionals'
 date: '2020-06-14'
-readTime: '6'
+readTime: '8'
 ---
 
 One of the main logics that we use for programing are **Conditionals**:
