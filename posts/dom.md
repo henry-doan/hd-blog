@@ -1,7 +1,7 @@
 ---
 title: 'D.O.M'
 date: '2018-01-02'
-readTime: '4'
+readTime: '2'
 ---
 
 When you think of Dom you are probably think of Vin Diesel, Fast and Furious and family, but the D.O.M we are referring to is the **Document Object Model** 
