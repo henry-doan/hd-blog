@@ -1,7 +1,7 @@
 ---
 title: 'JQuery'
 date: '2018-12-19'
-readTime: '20'
+readTime: '45'
 ---
 
 When we are working in programming languages we often times would use **Libraries**
@@ -443,3 +443,68 @@ styles.css
 ```
 
 
+#### Animations
+Let's make it so the user can show / hide the cart.
+index.html
+```html
+<button id="add">Add To Cart</button>
+<button id="display_cart">Hide Cart</button>
+```
+
+jQuery Selectors
+main.js
+```js
+$('#display_cart').on('click', function() {
+ var cart = $('#cart');
+ var button = $(this);
+ if (button.text() === 'Hide Cart')
+   button.text('Show Cart')
+ else
+   button.text('Hide Cart');
+
+ cart.slideToggle();
+});
+```
+
+We can also pass options to the animation
+```js
+//animate slowly
+cart.slideToggle('slow');
+
+//animate quickly
+cart.slideToggle('slow');
+
+//animate over time
+cart.slideToggle(3000);  // 3 seconds or 3000 milliseconds
+```
+
+We can also do any animations with the .animate method:
+Let's make a checkout status element
+index.html
+```html
+ <h2 id="total">$0</h2>
+ <div id="complete"></div>
+<button id="purchase">Purchase</button>
+</div>
+```
+
+main.js
+```js
+$('#purchase').on('click', function() {
+$('#complete')
+  .html('<h2>PURCHASE COMPLETE<h2>')
+  .css({
+    'background-color': '#bca',
+    'width': '25%',
+    'border': '1px solid green',
+    'text-align': 'center'
+  })
+  .animate({
+    width: "70%",
+    opacity: 0.4,
+    marginLeft: "0.6in",
+    fontSize: "3em",
+    borderWidth: "10px"
+  }, 1500 );
+});
+```
