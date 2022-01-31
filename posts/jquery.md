@@ -176,3 +176,270 @@ $('.red-label').hide()
 
 
 ## Bringing It All Together
+
+#### Subscription Application:
+Let's say we have an application where a user can sign up for some subscription.  The price can change depending on if they pay monthly or yearly.  Let's set up our index.html to reflect this:
+
+index.html
+```html
+<html>
+ <body>
+   <h1 id="title">Super Cool Service</h1>
+   <h2 id="price">$10.00 /mo</h2>
+
+   <p>Choose a plan</p>
+
+   <select id="plan">
+     <option value="monthly">Monthly</option>
+     <option value="quarterly">Quarterly</option>
+     <option value="yearly">Yearly</option>
+   </select>
+
+   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+   <script src="main.js"></script>
+ </body>
+</html>
+```
+
+Next let's create an event listener.  This will listen on a DOM element for a users actions and perform some JavaScript when that happens.
+
+main.js
+```js
+$(document).ready( function() {
+ $('#plan').on('change', function() {
+   var priceText;
+
+   switch(this.value) {
+     case 'monthly':
+       priceText = '$10.00 /mo';
+       break;
+     case 'quarterly':
+       priceText = '$9.00 /mo';
+       break;
+     case 'yearly':
+       priceText = '$7.00 /mo';
+       break;
+   }
+
+   $('#price').text(priceText)
+ });
+});
+```
+
+We are listening for an element with an id of plan to change.  When this happens an event is triggered.
+
+In this case `this` refers to the element that fired the event (The select).  We are switching on the value of the select which will be the value of the option that was selected.  Finally update the price header with the appropriate text.
+
+Next we will create a cart section so a user can add the item to their cart.
+
+First we will update our HTML to give us 2 sections.  Pricing on the left and the cart on the right:
+
+index.html
+```html
+<html>
+ <head>
+   <link rel="stylesheet" href="styles.css" />
+ </head>
+
+ <body>
+   <div id="wrapper">
+     <div id="options">
+       <h1 id="title">Super Cool Service</h1>
+       <h2 id="price">$10.00 /mo</h2>
+       <p>Choose a plan</p>
+       <select id="plan">
+         <option value="monthly">Monthly</option>
+         <option value="quarterly">Quarterly</option>
+         <option value="yearly">Yearly</option>
+       </select>
+     </div>
+     <div id="cart">
+       <h1>Cart</h1>
+       <hr/>
+       <ul id="in_cart">
+       </ul>
+     </div>
+   </div>
+
+   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+   <script src="main.js"></script>
+ </body>
+</html>
+```
+
+styles.css
+```css
+#wrapper {
+ width: 100%;
+ overflow: hidden
+}
+
+#options {
+ width: 50%;
+ float: left;
+ border-right: solid 1px black;
+}
+
+#cart {
+ margin-left: 51%;
+}
+```
+
+Next we will add an Add to card button.
+index.html
+```html
+...
+</select>
+<button id="add">Add To Cart</button>
+...
+```
+
+Now let's create a click handler to "Add To Cart"
+main.js
+```js
+...
+$('#add').on('click', function() {
+  var plan = $('#plan')
+  var installment = plan.val();
+  var price = $('#price').text();
+  var inCart = $('#in_cart');
+  inCart.append('<li>' + installment + ' - ' + price + '</li>')
+});
+```
+
+Next let's create a running total:
+index.html
+```html
+...
+<div id="cart">
+ <h1>Cart</h1>
+ <hr />
+ <ul id="in_cart">
+ </ul>
+ <h2 id="total">$0</h2>
+</div>
+...
+```
+
+Next we need to keep a running total.  If monthly we add the price * 1, if it's quarterly we add the price * 4, and if yearly price * 12.  We could have an easier time accessing the price if we added a data attribute to each li.
+main.js
+```js
+...
+$('#add').on('click', function() {
+ var plan = $('#plan')
+ var installment = plan.val();
+ var price = $('#price').text();
+ var inCart = $('#in_cart');
+ var numeric = price.replace(/[[A-Za-z$\/\s]/g, '')
+ var data = 'data-price="' + numeric + '" data-plan="' + installment + '"'
+ inCart.append('<li class="entry"' + data + '>' + installment + ' - ' + price + '</li>')
+});
+```
+
+Next let's add a function to update the total
+main.js
+```js
+$(document).ready( function() {
+ function updateTotal() {
+   var total = 0;
+
+   $('.entry').each( function(index, entry) {
+     var data = $(entry).data();
+     var price = parseFloat(data.price)
+     var installment = data.plan
+     switch(installment) {
+       case 'monthly':
+         total += price;
+         break;
+       case 'quarterly':
+         total += price * 4;
+         break;
+       case 'yearly':
+         total += price * 12;
+         break;
+     }
+   })
+
+   $('#total').text('$' + total);
+}
+
+.....
+$('#add').on('click', function() {
+   .....
+   updateTotal();
+})
+```
+
+Next let's create a way to remove an item from the cart
+Add this to the <li> created in $('#add')
+main.js
+```js
+'<button class="remove">X</button></li>'
+```
+
+Let's add an event listener for this button:
+main.js
+```js
+...
+$('.remove').on('click', function() {
+ alert('Button clicked');
+});
+```
+
+Notice that clicking these buttons doesn't work.  This is because the button was created dynamically after the listener was created so there is no listener attached.  To get around this we can attach the listener to the document instead of the button.
+Replace $('.close') with:
+```js
+$(document).on('click', '.remove', function() {
+```
+
+Next we can remove the item from the cart
+```js
+$(document).on('click', '.remove', function() {
+ ...
+ updateTotal();
+});
+```
+
+Next let's create a way for the user to empty the cart:
+index.html
+```html
+....
+<div id="cart">
+ <h1>Cart</h1>
+ <hr />
+ <button id="empty">Clear Cart</button>
+ <ul id="in_cart">
+
+....
+```
+
+main.js
+```js
+function updateTotal() {
+ var total = 0;
+ var entries = $('.entry')
+
+ if (entries.length)
+   $('#empty').show();
+ else
+   $('#empty').hide();
+
+ entries.each( function(index, entry) {
+
+....
+
+$('#empty').on('click', function() {
+ $('#in_cart').empty();
+ updateTotal();
+});
+```
+
+Next let's add some css so the button doesn't show up when the page is first loaded:
+styles.css
+```css
+#empty {
+  display: none;
+}
+```
+
+
