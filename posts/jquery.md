@@ -508,3 +508,184 @@ $('#complete')
   }, 1500 );
 });
 ```
+
+
+#### Additional jQuery Info
+###### Element selectors:
+```js
+$('h1')
+```
+  - Returns an array of all <h1> elements
+```js
+$('div')
+```
+  - Returns an array of all <div> elements
+```js
+$('a')
+```
+  - Returns an array of all link elements ( <a> )
+```js
+$('table')
+```
+  - Returns an array of all <table> elements
+```js
+$('p:first')
+```
+  - Returns the first <p> element
+```js
+$('tr:even')
+```
+ - Returns all even <tr> elements
+```js
+$('#first_div:first-child')
+```
+  - Returns the first child of an element with an ID of first_div
+```js
+$('ul li:first')
+```
+  - Returns the first <li> from the first <ul>
+
+
+###### ID selector:
+```js
+$('#some_id')
+```
+  - Returns an array of elements with an ID of some_id.  Note since this is an ID it should only return one element but jQuery objects are always returned as an array so in this case it will be an array of one element.
+Class Selector:
+```js
+$('.some_class')
+```
+  - Returns an array of all elements with the class of some_class.
+
+###### Getting Content
+For this section we will assume we are doing $(some_selector).someMethod()
+```js
+.text()
+```
+  - Sets or returns the text content of selected elements
+```js
+.html()
+```
+  - Sets or returns the content of selected elements including HTML markup
+```js
+.val() 
+```
+  - Sets or returns the value of form fields
+```js
+.attr()
+```
+  - Sets or gets attributes
+
+
+###### jQuery Events
+```js
+.click()
+```
+  - Do something when the selected element is clicked
+```js
+.dblclick()
+```
+  - Do something when the selected element is double-clicked
+```js
+.mouseenter()
+```
+  - Do something when the mouse enters the selected element
+```js
+.mouseleave()
+```
+  - Do something when the mouse leaves the selected element
+```js
+.mousedown()
+```
+  - Do something when the mouse is down on the selected element
+```js
+.mouseup()
+```
+  - Do something when the mouse is up on selected element
+```js
+.change()
+```
+  - Do something when selected element changes ( e.g. radio buttons, checkboxes, input fields)
+```js
+.hover()
+```
+  - Do something when mouse is hovering over selected element
+```js
+.focus()
+``` 
+  - Do something when the selected element is focussed
+```js
+.blur()
+```
+  - Do something when the selected element loses focus
+
+
+###### Add new HTML Content
+```js
+.append()
+```
+  - Inserts content at the end of the selected elements.
+```js
+.prepend()
+```
+  - Inserts content at the beginning of the selected elements.
+```js
+.after()
+``` 
+  - Inserts content after the selected elements.
+```js
+.before()
+```
+  - Inserts content before the selected elements.
+
+
+###### Removing Elements / Content
+```js
+.remove()
+```
+  - Removes the selected element and it's child elements
+```js
+.empty()
+```
+  - Removes the child element from the selected element
+
+
+###### Traversing
+```js
+.prev()
+```
+  - Get the previous element based off of the selected element
+```js
+.next()
+```
+  - Get the next element based off of the selected element
+```js
+.parents()
+```
+  - Get the parents of the selected element
+```js
+.parent()
+```
+  - Get the parent of the selected element.
+```js
+.children()
+```
+  - Get the children of the selected element
+```js
+.siblings()
+```
+  - Get the siblings of the selected element
+NOTE all of these methods can take selectors:
+```js
+$('#myDiv').children('span')
+```
+  - Get all children that are <span> tags
+
+
+###### Method Chaining
+Chaining methods allows running multiple jQuery methods on the same element within a single statement
+```js
+$('#pl').css('color',  'red').slideUp(2000).slideDown(2000);
+```
+
+These are just some from the documentation, there are a lot more and you can combine them into to your application.
