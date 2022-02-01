@@ -1,6 +1,6 @@
 ---
 title: 'Styling Vocab'
-date: '2020-01-08'
+date: '2018-01-08'
 readTime: '3'
 ---
 
