@@ -43,3 +43,13 @@ a:hover::before {
   transform: translateY(0);
   transition: transform .25s ease-out;
 }
+
+article img {
+  width: 544px;
+}
+
+@media only screen and (max-width: 600px) {
+  article img {
+    width: 350px;
+  }
+}
